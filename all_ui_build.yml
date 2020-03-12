@@ -1,0 +1,59 @@
+- name: Build for RBMR
+  hosts: '{{ server }}'
+  remote_user: "{{ build_user }}"
+  tags:
+    - RBMR
+  roles:
+    - build_cout_rv
+    - build_run
+    - setup_exe_rv
+    - final_archive
+    - copy_zip_rb
+    - clean_workarea_rv
+- name: Build for RBFULL
+  hosts: '{{ server }}'
+  remote_user: "{{ build_user }}"
+  tags:
+    - RBFULL
+  roles:
+    - build_cout_rv
+    - build_run
+    - setup_exe_rv_patch
+    - final_archive
+    - copy_zip_rb
+    - clean_workarea_rv
+- name: Build for RBDELTA
+  hosts: '{{ server }}'
+  remote_user: "{{ build_user }}"
+  tags:
+    - RBDELTA
+  roles:
+    - build_cout_rv
+    - build_run
+    - copy_del
+    - clean_workarea_rv
+- name: Build for TAP
+  hosts: '{{ server }}'
+  remote_user: "{{ build_user }}"
+  tags:
+    - TAP
+  roles:
+    - build_cout_tap
+    - build_run
+    - setup_exe_tap
+    - final_archive
+    - copy_zip_tap
+#    - clean_workarea_tap
+- name: Build for VI
+  hosts: '{{ server }}'
+  remote_user: "{{ build_user }}"
+  tags:
+    - VI
+  roles:
+    - build_cout_rv
+    - setup_exe_rv
+    - final_archive
+    - clean_workarea_rv
+    
+
+  
